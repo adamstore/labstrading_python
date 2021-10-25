@@ -7,5 +7,8 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
+def trading(request):
+    return render(request, 'blog/trading.html', {'title':'trading'})    
+
 def about(request):
     return render(request, 'blog/about.html', {'title':'about'})    
