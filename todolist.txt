@@ -1,0 +1,15 @@
+search feature
+contact us page 
+commenting feature 
+footer                  
+
+create pages = {
+    'home               done
+    'paper_research'    done
+    'contact-us'        done
+    'about'             done
+    'data'              done
+    }
+
+fix the names of my page ==> done
+

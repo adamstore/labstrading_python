@@ -2,17 +2,18 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post 
+from .models import Post, Search 
+from django.db.models import Q
 
 def home(request):
     context = {
         'posts': Post.objects.all()
     }
-    return render(request, 'blog/home.html', context)
+    return render(request, 'blog/blog.html', context)
 
 class PostListView(ListView):
     model = Post
-    template_name = 'blog/home.html' # <app>/<model>_<viewtype>.html
+    template_name = 'blog/blog.html' # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5
@@ -62,8 +63,31 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-def trading(request):
-    return render(request, 'blog/trading.html', {'title':'trading'})    
+# function of search
+def search(request):
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        post = Search.objects.all().filter(title=search)
+        return render(request, 'blog/search.html', {'posts':post} )
+    #else: 
+    #    return render(request, 'blog/search.html')
 
-def about(request):
-    return render(request, 'blog/about.html', {'title':'about'})    
+# trading page view
+def trading(request):
+    return render(request, 'blog/trading.html', {'title':'Trading'})
+
+# data page view
+def data(request):
+    return render(request, 'blog/data.html', {'title':'Data'})  
+
+# paper_research page view
+def paper_research(request):
+    return render(request, 'blog/paper_research.html', {'title':'Paper research'})   
+
+# contact page view
+def contact(request):
+    return render(request, 'blog/contact.html', {'title':'Contact'})    
+
+# about page view
+def about(request): 
+    return render(request, 'blog/about.html', {'title':'About'})    
