@@ -1,7 +1,10 @@
-search feature
+search feature          
 contact us page 
-commenting feature 
-footer                  
+commenting feature      
+footer                  done               
+sitemap                 
+google security         
+google analyrics 
 
 create pages = {
     'home               done

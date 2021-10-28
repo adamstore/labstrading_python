@@ -1,15 +1,17 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Search 
-from django.db.models import Q
+
+from .models import Post, Search
+
 
 def home(request):
     context = {
         'posts': Post.objects.all()
     }
-    return render(request, 'blog/blog.html', context)
+    return render(request, 'blog/blog.html', {'title':'Blog'}, context )
 
 class PostListView(ListView):
     model = Post
@@ -91,3 +93,7 @@ def contact(request):
 # about page view
 def about(request): 
     return render(request, 'blog/about.html', {'title':'About'})    
+
+# comment page view
+def comment(request): 
+    return render(request, 'blog/comment.html', {'title':'comment'})  
