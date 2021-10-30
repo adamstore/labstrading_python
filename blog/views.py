@@ -1,16 +1,15 @@
+from django.http import request
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .models import Post, Search
+from .models import Post
 
 
 def home(request):
-    context = {
-        'posts': Post.objects.all()
-    }
+    context = {'posts': Post.objects.all()}
     return render(request, 'blog/blog.html', {'title':'Blog'}, context )
 
 class PostListView(ListView):
@@ -64,15 +63,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
-
-# function of search
-def search(request):
-    if request.method == 'GET':
-        search = request.GET.get('search')
-        post = Search.objects.all().filter(title=search)
-        return render(request, 'blog/search.html', {'posts':post} )
-    #else: 
-    #    return render(request, 'blog/search.html')
 
 # trading page view
 def trading(request):

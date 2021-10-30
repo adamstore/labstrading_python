@@ -16,9 +16,9 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 # search mode remove it if all doesn't worked
-class Search(models.Model):
-    title = models.CharField(max_length=200 , null=False , db_index=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+#class Search(models.Model):
+    #title = models.CharField(max_length=200 , null=False , db_index=True)
+    #author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 # comment section
 class Comment(models.Model):

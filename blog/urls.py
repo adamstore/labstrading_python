@@ -11,7 +11,6 @@ urlpatterns = [
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
 
     #my recently added pages view
-    path('search/', views.search, name='blog-search'),
     path('', views.trading, name='blog-trading'),
     path('paper_research/', views.paper_research, name='blog-paper_research'),
     path('data/', views.data, name='blog-data'),
